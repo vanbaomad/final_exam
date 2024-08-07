@@ -3,11 +3,7 @@ package entity;
 import Game.GameWindow;
 
 import javax.swing.*;
-import java.awt.Dimension;
-import java.awt.Graphics;
-import java.awt.GridLayout;
-import java.awt.Image;
-import java.awt.Point;
+import java.awt.*;
 import java.awt.event.MouseEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseMotionListener;
@@ -15,18 +11,18 @@ import java.util.LinkedList;
 import java.util.List;
 
 public class Board extends JPanel implements MouseListener, MouseMotionListener {
-    private static final String RESOURCES_WBISHOP_PNG = "wbishop.png";
-    private static final String RESOURCES_BBISHOP_PNG = "bbishop.png";
-    private static final String RESOURCES_WKNIGHT_PNG = "wknight.png";
-    private static final String RESOURCES_BKNIGHT_PNG = "bknight.png";
-    private static final String RESOURCES_WROOK_PNG = "wrook.png";
-    private static final String RESOURCES_BROOK_PNG = "brook.png";
-    private static final String RESOURCES_WKING_PNG = "wking.png";
-    private static final String RESOURCES_BKING_PNG = "bking.png";
-    private static final String RESOURCES_BQUEEN_PNG = "bqueen.png";
-    private static final String RESOURCES_WQUEEN_PNG = "wqueen.png";
-    private static final String RESOURCES_WPAWN_PNG = "wpawn.png";
-    private static final String RESOURCES_BPAWN_PNG = "bpawn.png";
+    private static final String RESOURCES_WBISHOP_PNG = "/data/wbishop.png";
+    private static final String RESOURCES_BBISHOP_PNG = "/data/bbishop.png";
+    private static final String RESOURCES_WKNIGHT_PNG = "/data/wknight.png";
+    private static final String RESOURCES_BKNIGHT_PNG = "/data/bknight.png";
+    private static final String RESOURCES_WROOK_PNG = "/data/wrook.png";
+    private static final String RESOURCES_BROOK_PNG = "/data/brook.png";
+    private static final String RESOURCES_WKING_PNG = "/data/wking.png";
+    private static final String RESOURCES_BKING_PNG = "/data/bking.png";
+    private static final String RESOURCES_BQUEEN_PNG = "/data/bqueen.png";
+    private static final String RESOURCES_WQUEEN_PNG = "/data/wqueen.png";
+    private static final String RESOURCES_WPAWN_PNG = "/data/wpawn.png";
+    private static final String RESOURCES_BPAWN_PNG = "/data/bpawn.png";
 
     // Logical and graphical representations of board
     private final Square[][] board;
@@ -112,10 +108,10 @@ public class Board extends JPanel implements MouseListener, MouseMotionListener 
         board[7][5].put(new Bishop(1, board[7][5], RESOURCES_WBISHOP_PNG));
 
 
-        for(int y = 0; y < 2; y++) {
+        for (int y = 0; y < 2; y++) {
             for (int x = 0; x < 8; x++) {
                 Bpieces.add(board[y][x].getOccupyingPiece());
-                Wpieces.add(board[7-y][x].getOccupyingPiece());
+                Wpieces.add(board[7 - y][x].getOccupyingPiece());
             }
         }
 

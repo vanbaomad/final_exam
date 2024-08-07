@@ -4,6 +4,7 @@ import entity.Board;
 import entity.Clock;
 import entity.StartMenu;
 
+import javax.imageio.ImageIO;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -20,7 +21,6 @@ public class GameWindow {
     private Board board;
 
 
-
     public GameWindow(String blackName, String whiteName, int hh,
                       int mm, int ss) {
 
@@ -31,7 +31,7 @@ public class GameWindow {
 
 
         try {
-            Image whiteImg = ImageIO.read(getClass().getResource("wp.png"));
+            Image whiteImg = ImageIO.read(getClass().getResource("/data/wp.png"));
             gameWindow.setIconImage(whiteImg);
         } catch (Exception e) {
             System.out.println("Game file wp.png not found");
@@ -40,7 +40,7 @@ public class GameWindow {
         gameWindow.setLocation(100, 100);
 
 
-        gameWindow.setLayout(new BorderLayout(20,20));
+        gameWindow.setLayout(new BorderLayout(20, 20));
 
         // Game Data window
         JPanel gameData = gameDataPanel(blackName, whiteName, hh, mm, ss);
@@ -68,7 +68,7 @@ public class GameWindow {
                                  final int hh, final int mm, final int ss) {
 
         JPanel gameData = new JPanel();
-        gameData.setLayout(new GridLayout(3,2,0,0));
+        gameData.setLayout(new GridLayout(3, 2, 0, 0));
 
 
         // PLAYER NAMES
@@ -216,7 +216,7 @@ public class GameWindow {
         return buttons;
     }
 
-    public void checkmateOccurred (int c) {
+    public void checkmateOccurred(int c) {
         if (c == 0) {
             if (timer != null) timer.stop();
             int n = JOptionPane.showConfirmDialog(

@@ -1,11 +1,8 @@
 package entity;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 import java.util.concurrent.ConcurrentLinkedDeque;
+
 public class CheckmateDetector {
     private Board b;
     private LinkedList<Piece> wPieces;
@@ -14,8 +11,8 @@ public class CheckmateDetector {
     private final LinkedList<Square> squares;
     private King bk;
     private King wk;
-    private HashMap<Square,List<Piece>> wMoves;
-    private HashMap<Square,List<Piece>> bMoves;
+    private HashMap<Square, List<Piece>> wMoves;
+    private HashMap<Square, List<Piece>> bMoves;
 
     public CheckmateDetector(Board b, LinkedList<Piece> wPieces,
                              LinkedList<Piece> bPieces, King wk, King bk) {
@@ -28,8 +25,8 @@ public class CheckmateDetector {
         // Initialize other fields
         squares = new LinkedList<Square>();
         movableSquares = new LinkedList<Square>();
-        wMoves = new HashMap<Square,List<Piece>>();
-        bMoves = new HashMap<Square,List<Piece>>();
+        wMoves = new HashMap<Square, List<Piece>>();
+        bMoves = new HashMap<Square, List<Piece>>();
 
         Square[][] brd = b.getSquareArray();
 
@@ -105,6 +102,7 @@ public class CheckmateDetector {
 
     /**
      * Checks if the black king is threatened
+     *
      * @return boolean representing whether the black king is in check.
      */
     public boolean blackInCheck() {
@@ -118,6 +116,7 @@ public class CheckmateDetector {
 
     /**
      * Checks if the white king is threatened
+     *
      * @return boolean representing whether the white king is in check.
      */
     public boolean whiteInCheck() {
@@ -131,6 +130,7 @@ public class CheckmateDetector {
 
     /**
      * Checks whether black is in checkmate.
+     *
      * @return boolean representing if black player is checkmated.
      */
     public boolean blackCheckMated() {
@@ -154,6 +154,7 @@ public class CheckmateDetector {
 
     /**
      * Checks whether white is in checkmate.
+     *
      * @return boolean representing if white player is checkmated.
      */
     public boolean whiteCheckMated() {
@@ -179,7 +180,7 @@ public class CheckmateDetector {
      * Helper method to determine if the king can evade the check.
      * Gives a false positive if the king can capture the checking piece.
      */
-    private boolean canEvade(Map<Square,List<Piece>> tMoves, King tKing) {
+    private boolean canEvade(Map<Square, List<Piece>> tMoves, King tKing) {
         boolean evade = false;
         List<Square> kingsMoves = tKing.getLegalMoves(b);
         Iterator<Square> iterator = kingsMoves.iterator();
@@ -200,7 +201,7 @@ public class CheckmateDetector {
     /*
      * Helper method to determine if the threatening piece can be captured.
      */
-    private boolean canCapture(Map<Square,List<Piece>> poss,
+    private boolean canCapture(Map<Square, List<Piece>> poss,
                                List<Piece> threats, King k) {
 
         boolean capture = false;
@@ -235,7 +236,7 @@ public class CheckmateDetector {
      * Helper method to determine if check can be blocked by a piece.
      */
     private boolean canBlock(List<Piece> threats,
-                             Map <Square,List<Piece>> blockMoves, King k) {
+                             Map<Square, List<Piece>> blockMoves, King k) {
         boolean blockable = false;
 
         if (threats.size() == 1) {
@@ -258,7 +259,7 @@ public class CheckmateDetector {
                         movableSquares.add(brdArray[i][ks.getXNum()]);
 
                         for (Piece p : blockers) {
-                            if (testMove(p,brdArray[i][ks.getXNum()])) {
+                            if (testMove(p, brdArray[i][ks.getXNum()])) {
                                 blockable = true;
                             }
                         }
@@ -393,8 +394,9 @@ public class CheckmateDetector {
      * Method to get a list of allowable squares that the player can move.
      * Defaults to all squares, but limits available squares if player is in
      * check.
+     *
      * @param b boolean representing whether it's white player's turn (if yes,
-     * true)
+     *          true)
      * @return List of squares that the player can move into.
      */
     public List<Square> getAllowableSquares(boolean b) {
@@ -410,7 +412,8 @@ public class CheckmateDetector {
     /**
      * Tests a move a player is about to make to prevent making an illegal move
      * that puts the player in check.
-     * @param p Piece moved
+     *
+     * @param p  Piece moved
      * @param sq Square to which p is about to move
      * @return false if move would cause a check
      */

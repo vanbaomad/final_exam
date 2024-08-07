@@ -5,8 +5,9 @@ import java.awt.*;
 import java.awt.image.BufferedImage;
 import java.io.IOException;
 import java.util.LinkedList;
+import java.util.List;
 
-public abstract class  Piece {
+public abstract class Piece {
     private final int color;
     private Square currentSquare;
     private BufferedImage img;
